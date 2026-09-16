@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import { api, Product } from "../services/api";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-const categories = ["All", "Veterinary Medicine", "Fertilizers", "Animal Feed", "Supplements", "Equipment"];
+const categories = ["All", "Fertilizers", "Crop Protection", "Seeds", "Supplements", "Equipment", "Kits"];
 
 export function AgrovetShop() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -128,7 +128,7 @@ export function AgrovetShop() {
             Agrovet Input Store
           </h1>
           <p className="text-emerald-50 text-sm sm:text-base mb-6 leading-relaxed font-medium">
-            Certified veterinary pharmaceuticals, foliage fertilizers, nutrient feeds, and precision drip kits with doorstep farm delivery.
+            Certified crop fertilizers, seeds, crop protection, nutrient sprays, and precision drip kits with doorstep farm delivery.
           </p>
 
           <div className="flex flex-wrap gap-4 text-xs font-semibold">
@@ -136,7 +136,7 @@ export function AgrovetShop() {
               <Truck className="w-4 h-4 text-emerald-200" /> Doorstep Delivery
             </span>
             <span className="flex items-center gap-1.5 bg-black/20 px-3.5 py-2 rounded-full backdrop-blur-md">
-              <ShieldCheck className="w-4 h-4 text-emerald-200" /> TVLA Genuine Certified
+              <ShieldCheck className="w-4 h-4 text-emerald-200" /> Quality Certified Inputs
             </span>
             <span className="flex items-center gap-1.5 bg-black/20 px-3.5 py-2 rounded-full backdrop-blur-md">
               <Package className="w-4 h-4 text-emerald-200" /> Bulk Discounts
@@ -150,7 +150,7 @@ export function AgrovetShop() {
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <Input
-            placeholder="Search veterinary medicine, fertilizers, feeds..."
+            placeholder="Search fertilizers, seeds, crop protection, kits..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 h-11 bg-white border-slate-200 shadow-xs text-sm rounded-xl"
