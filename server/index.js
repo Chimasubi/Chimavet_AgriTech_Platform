@@ -11,13 +11,13 @@ app.use(express.json());
 let products = [
   {
     id: 1,
-    name: "Ivermectin 1% Injectable (50ml)",
-    category: "Veterinary Medicine",
-    price: 45000, // TSh
+    name: "Mancozeb 80% WP Fungicide (500g)",
+    category: "Crop Protection",
+    price: 38000, // TSh
     image: "https://images.unsplash.com/photo-1606235357537-84aea24d4c4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600",
     inStock: true,
-    description: "Anti-parasitic solution for cattle, sheep, and swine - 50ml bottle. TVLA certified.",
-    dosage: "1ml per 50kg body weight subcutaneously",
+    description: "Broad-spectrum fungicide for early & late blight in tomatoes, potatoes, and vegetables.",
+    dosage: "2.5kg per hectare in protective spraying program",
   },
   {
     id: 2,
@@ -31,33 +31,33 @@ let products = [
   },
   {
     id: 3,
-    name: "High Yield Dairy Feed Concentrate (70kg)",
-    category: "Animal Feed",
-    price: 78000, // TSh
+    name: "Foliar Micro-Nutrient Mix (1kg, 12 Elements)",
+    category: "Fertilizers",
+    price: 45000, // TSh
     image: "https://images.unsplash.com/photo-1655980235599-8e3d642e4993?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600",
     inStock: true,
-    description: "Formulated protein & mineral feed for dairy cows in Tanga & Arusha regions.",
-    dosage: "2kg per 5 litres of milk produced daily",
+    description: "Chelated micronutrients (Zn, Fe, Mn, B, Cu, Mo) for maize, rice, beans, and horticulture.",
+    dosage: "200g per acre dissolved in 100L water for foliar spray",
   },
   {
     id: 4,
-    name: "Oxytetracycline LA 20% (100ml)",
-    category: "Veterinary Medicine",
-    price: 32000, // TSh
+    name: "Lambda-cyhalothrin Insecticide (250ml)",
+    category: "Crop Protection",
+    price: 28000, // TSh
     image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600",
     inStock: true,
-    description: "Long-acting broad spectrum antibiotic for bacterial livestock infections.",
-    dosage: "1ml per 10kg body weight intramuscularly",
+    description: "Effective contact & stomach insecticide for fall armyworm, aphids, and bollworms in crops.",
+    dosage: "150ml per hectare against fall armyworm in maize",
   },
   {
     id: 5,
-    name: "Calcium & Phosphorus Oral Booster (500ml)",
+    name: "Bio-Stimulant Seaweed Extract (1L)",
     category: "Supplements",
     price: 24000, // TSh
     image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600",
     inStock: true,
-    description: "Oral energy & calcium booster for post-calving milk fever prevention.",
-    dosage: "1 bottle (500ml) immediately post-calving",
+    description: "Organic seaweed-based bio-stimulant for strong rooting, flowering, and stress recovery in crops.",
+    dosage: "50ml per 20L water every 14 days during vegetative stage",
   },
   {
     id: 6,
@@ -227,58 +227,6 @@ let irrigationZones = [
   },
 ];
 
-// Vaccination Records (TVLA Certified Tanzania Registry)
-let vaccinationRecords = [
-  {
-    id: 1,
-    livestockType: "Cattle",
-    tagId: "TZ-COW-904",
-    animalName: "Simba",
-    vaccineName: "Foot and Mouth Disease (TVLA FMD)",
-    dosage: "2ml Subcutaneous",
-    dateAdministered: "2026-02-10",
-    nextDueDate: "2026-08-10",
-    status: "Completed",
-    vetNotes: "Administered by Dr. Mvungi (TVLA Arusha Officer). Animal healthy.",
-  },
-  {
-    id: 2,
-    livestockType: "Cattle",
-    tagId: "TZ-COW-912",
-    animalName: "Kijito",
-    vaccineName: "Contagious Bovine Pleuropneumonia (CBPP)",
-    dosage: "1ml Subcutaneous",
-    dateAdministered: "2025-10-15",
-    nextDueDate: "2026-10-15",
-    status: "Scheduled",
-    vetNotes: "Booster due in Mbeya livestock dip station.",
-  },
-  {
-    id: 3,
-    livestockType: "Poultry",
-    tagId: "FLOCK-TZ-08",
-    animalName: "Kuku Kuchi Flock (300 birds)",
-    vaccineName: "Newcastle Disease (NDV-Lasota)",
-    dosage: "Drinking water application",
-    dateAdministered: "2026-01-12",
-    nextDueDate: "2026-03-01",
-    status: "Overdue",
-    vetNotes: "Revaccination required for Morogoro poultry house.",
-  },
-  {
-    id: 4,
-    livestockType: "Goats",
-    tagId: "TZ-GOAT-55",
-    animalName: "Mwenzangu",
-    vaccineName: "Peste des Petits Ruminants (PPR)",
-    dosage: "1ml Subcutaneous",
-    dateAdministered: "2026-01-25",
-    nextDueDate: "2027-01-25",
-    status: "Completed",
-    vetNotes: "Immunity certificate issued.",
-  },
-];
-
 // API Endpoints
 
 app.get('/api/health', (req, res) => {
@@ -416,31 +364,6 @@ app.post('/api/irrigation/toggle', (req, res) => {
   res.json({ success: true, message: `Updated zone ${zone.name}`, zone });
 });
 
-// Vaccinations API
-app.get('/api/vaccinations', (req, res) => {
-  res.json({ success: true, data: vaccinationRecords });
-});
-
-app.post('/api/vaccinations', (req, res) => {
-  const { livestockType, tagId, animalName, vaccineName, dosage, dateAdministered, nextDueDate, vetNotes } = req.body;
-
-  const newRecord = {
-    id: vaccinationRecords.length + 1,
-    livestockType: livestockType || 'Cattle',
-    tagId,
-    animalName: animalName || tagId,
-    vaccineName,
-    dosage: dosage || '1ml Subcutaneous',
-    dateAdministered: dateAdministered || new Date().toISOString().split('T')[0],
-    nextDueDate: nextDueDate || 'In 6 Months',
-    status: 'Completed',
-    vetNotes: vetNotes || 'TVLA certified veterinarian log',
-  };
-
-  vaccinationRecords.unshift(newRecord);
-  res.json({ success: true, message: 'TVLA Vaccination Passport updated!', record: newRecord });
-});
-
 // ChimaAI Tanzanian Agronomy Assistant API
 app.post('/api/ai/ask', (req, res) => {
   const { question } = req.body;
@@ -450,21 +373,24 @@ app.post('/api/ai/ask', (req, res) => {
   let answer = "";
   let category = "Tanzania Kilimo Assistant";
 
-  if (q.includes("presi") || q.includes("tsh") || q.includes("tzs") || q.includes("tigo") || q.includes("mpesa") || q.includes("pesa")) {
-    category = "Malipo ya M-Pesa & Tigo Pesa";
-    answer = `Habari! Chimavet Super App inakubali malipo ya papo hapo kupitia **M-Pesa Tanzania**, **Tigo Pesa**, na **Airtel Money** kwa Shilingi za Tanzania (TSh).\n\n• **Lipa kwa Namba**: Tumia namba yako ya simu kuanzia +255 7XX XXX XXX.\n• **Hati ya Malipo**: Baada ya kukamilisha malipo, utapokea Risiti ya Kidigitali papo hapo.`;
-  } else if (q.includes("presi") || q.includes("presi") || q.includes("market") || q.includes("presha") || q.includes("price") || q.includes("maize") || q.includes("rice")) {
+  if (q.includes("presi") || q.includes("presha") || q.includes("bei") || q.includes("market") || q.includes("price") || q.includes("maize") || q.includes("rice") || q.includes("mahindi") || q.includes("mchele")) {
     category = "Bei za Soko la Tanzania";
     answer = `Bei za Soko la Jumla Tanzania leo (TSh):\n\n• **Mahindi (Kilosa / Morogoro)**: TSh 68,000 / Gunia (100kg)\n• **Mchele wa Kyela (Mbeya)**: TSh 145,000 / Gunia (100kg)\n• **Maharage (Arusha)**: TSh 210,000 / Gunia (100kg)\n• **Alizeti (Dodoma Kibaigwa)**: TSh 95,000 / Gunia\n\nUnaweza kuuza mazao yako moja kwa moja kwenye **Farmer Marketplace** yetu!`;
-  } else if (q.includes("tractor") || q.includes("rent") || q.includes("machin") || q.includes("harvest")) {
+  } else if (q.includes("tractor") || q.includes("rent") || q.includes("machin") || q.includes("harvest") || q.includes("trekta") || q.includes("kodi")) {
     category = "Kukodi Mitambo & Matrekta";
     answer = `Huduma ya Kukodi Matrekta (Equipment Rental):\n\n• **John Deere 75HP**: TSh 180,000 / Siku au TSh 45,000 / Ekari.\n• **Kubota Rice Combine Harvester**: TSh 85,000 / Ekari (pamoja na Dereva na Mafuta).\n\nKitengo chetu kinatuma trekta moja kwa moja shambani kwako Arusha, Morogoro, Mbeya, au Dodoma!`;
-  } else if (q.includes("vaccin") || q.includes("chanjo") || q.includes("tvla") || q.includes("dawa")) {
-    category = "Chanjo za Mifugo (TVLA)";
-    answer = `Mwongozo wa Chanjo za Mifugo Tanzania (TVLA Protocol):\n\n1. **Ng'ombe**: Chanjo ya Homa ya Mapafu (CBPP) & Magonjwa ya Miguu na Midomo (FMD).\n2. **Kuku**: Chanjo ya Kideri (Newcastle Lasota) kila baada ya wiki 6 kupitia maji ya kunywa.\n3. **Mbuzi / Kondoo**: Chanjo ya PPR kila mwaka.\n\nRipoti na Pasipoti zote za Chanjo zinalindwa na mamlaka ya TVLA.`;
+  } else if (q.includes("mbolea") || q.includes("fert") || q.includes("npk") || q.includes("dawa ya magonjwa ya mimea") || q.includes("pesticide") || q.includes("fungicide") || q.includes("seed") || q.includes("mbegu")) {
+    category = "Pembejeo za Kilimo (Agrovet)";
+    answer = `Pembejeo za Kilimo zinapatikana kwenye **Agrovet Shop** yetu (bei kwa TSh):\n\n• **NPK Fertilizer 20-20-20 (50kg)**: TSh 98,000 — bora kwa mahindi, mchele na mboga.\n• **High Yield Feed & Crop Inputs**: Dukani kila kitu cha mazingira.\n• **Drip Irrigation Kit (0.5 Ekari)**: TSh 420,000.\n\nAgiza leo na malipo ya **M-Pesa / Tigo Pesa** yakubaliwe papo hapo!`;
+  } else if (q.includes("irrigation") || q.includes("umwagilia") || q.includes("maji") || q.includes("soil moisture") || q.includes("unyevu")) {
+    category = "Usimamizi wa Umwagiliaji (IoT)";
+    answer = `Mfumo wetu wa **Smart Irrigation** unafuatilia unyevu wa udongo (soil moisture) kwa wakati halisi:\n\n1. **Kilombero Paddy Sector**: Unyevu wa udongo 72% — ratiba 06:00 & 18:00.\n2. **Arusha Horticulture Orchard**: Unyevu 48% — hitaji la kumwagilia linaonekana.\n3. **Morogoro Greenhouse**: Unyevu 84% — AUTO mode imewasha.\n\nValves za IoT zinaweza kudhibitiwa kwa mkono au kuachwa AUTO.`;
+  } else if (q.includes("analytics") || q.includes("takwimu") || q.includes("mavuno") || q.includes("yield") || q.includes("forecast")) {
+    category = "Shamba Analytics Dashboard";
+    answer = `Dashboard ya **Shamba Analytics** inakupa:\n\n• **MACRO**: muhtasari wa mavuno, mapato, maji yaliyotumika na afya ya shamba zima.\n• **MICRO**: uchambuzi wa kila shamba/ploti binafsi (unyevu, joto, mwanga, awamu ya mimea).\n\nTembelea kipengele cha **Shamba Analytics** juu ya ukurasa kuona takwimu za sasa.`;
   } else {
     category = "ChimaAI Ecosystem Support";
-    answer = `Habari Mkulima! Mimi ni ChimaAI, msaidizi wako wa Kilimo na Mifugo Tanzania.\n\nNinaweza kukusaidia kuhusu:\n1. Kuagiza pembejeo za Kilimo kwa TSh (Agrovet Shop).\n2. Kukodi trekta au Combine Harvester (Equipment Rental).\n3. Kuangalia bei za soko na kuuza mazao (Farmer Marketplace).\n4. Ratiba za chanjo za mifugo na umwagiliaji wa IoT.`;
+    answer = `Habari Mkulima! Mimi ni ChimaAI, msaidizi wako wa Kilimo Tanzania.\n\nNinaweza kukusaidia kuhusu:\n1. Kuagiza pembejeo za Kilimo kwa TSh (Agrovet Shop).\n2. Kukodi trekta au Combine Harvester (Equipment Rental).\n3. Kuangalia bei za soko na kuuza mazao (Farmer Marketplace).\n4. Umwagiliaji wa IoT na uchambuzi wa Shamba Analytics.`;
   }
 
   res.json({ success: true, answer, category, timestamp: new Date().toISOString() });

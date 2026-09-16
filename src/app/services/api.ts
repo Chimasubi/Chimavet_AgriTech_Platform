@@ -61,19 +61,6 @@ export interface Zone {
   areaSize?: string;
 }
 
-export interface VaccinationRecord {
-  id: number;
-  livestockType: string;
-  tagId: string;
-  animalName: string;
-  vaccineName: string;
-  dosage: string;
-  dateAdministered: string;
-  nextDueDate: string;
-  status: "Completed" | "Scheduled" | "Overdue";
-  vetNotes: string;
-}
-
 export const api = {
   // Products API
   async getProducts(category?: string, search?: string): Promise<Product[]> {
@@ -172,30 +159,6 @@ export const api = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ zoneId, isActive, isAutoMode, flowRate }),
-    });
-    return res.json();
-  },
-
-  // Vaccinations API
-  async getVaccinations(livestockType?: string): Promise<VaccinationRecord[]> {
-    try {
-      const params = new URLSearchParams();
-      if (livestockType && livestockType !== "All") params.append("livestockType", livestockType);
-
-      const res = await fetch(`/api/vaccinations?${params.toString()}`);
-      if (!res.ok) throw new Error("Failed to fetch vaccinations");
-      const data = await res.json();
-      return data.data;
-    } catch (err) {
-      return [];
-    }
-  },
-
-  async addVaccination(record: Partial<VaccinationRecord>) {
-    const res = await fetch("/api/vaccinations", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(record),
     });
     return res.json();
   },

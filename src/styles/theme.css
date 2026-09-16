@@ -8,19 +8,19 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 142 76% 36%;
-    --primary-foreground: 355.7 100% 97.3%;
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 187 85% 43%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 142 70% 95%;
-    --accent-foreground: 142 76% 25%;
+    --accent: 234 89% 94%;
+    --accent-foreground: 243 75% 35%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 142 76% 36%;
+    --ring: 243 75% 59%;
     --radius: 1rem;
   }
 
@@ -54,7 +54,7 @@
 }
 
 .light-green-hero {
-  background: linear-gradient(135deg, #15803d 0%, #16a34a 50%, #0d9488 100%);
+  background: linear-gradient(135deg, #4338ca 0%, #4f46e5 50%, #0d9488 100%);
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -70,5 +70,5 @@
   border-radius: 9999px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #16a34a;
+  background: #4f46e5;
 }

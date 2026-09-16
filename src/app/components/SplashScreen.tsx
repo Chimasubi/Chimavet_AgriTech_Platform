@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Droplets, Sprout, Leaf } from "lucide-react";
+import { Sprout, Wheat, Leaf, Droplets } from "lucide-react";
 
 interface SplashScreenProps {
   onFinish: () => void;
@@ -28,7 +28,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-gradient-to-br from-green-600 via-green-700 to-green-800 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-gradient-to-br from-indigo-700 via-indigo-800 to-indigo-950 flex items-center justify-center z-50"
     >
       <div className="text-center">
         {/* Animated Logo */}
@@ -48,7 +48,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
             
             {/* Center icon */}
             <div className="absolute inset-0 bg-white rounded-full flex items-center justify-center shadow-2xl">
-              <Droplets className="w-16 h-16 text-green-600" />
+              <Sprout className="w-16 h-16 text-indigo-600" />
             </div>
 
             {/* Floating elements */}
@@ -57,13 +57,21 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -top-4 -right-4 bg-white/90 p-2 rounded-full"
             >
-              <Sprout className="w-6 h-6 text-green-600" />
+              <Wheat className="w-6 h-6 text-amber-600" />
             </motion.div>
 
             <motion.div
               animate={{ y: [10, -10, 10] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -bottom-4 -left-4 bg-white/90 p-2 rounded-full"
+            >
+              <Droplets className="w-6 h-6 text-cyan-600" />
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [-6, 6, -6] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-2 -right-2 bg-white/90 p-2 rounded-full"
             >
               <Leaf className="w-6 h-6 text-green-600" />
             </motion.div>
@@ -77,7 +85,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
           transition={{ delay: 0.5, duration: 0.8 }}
         >
           <h1 className="text-5xl text-white mb-2">Chimavet</h1>
-          <p className="text-xl text-green-100 mb-8">Smart Farming Platform</p>
+          <p className="text-xl text-indigo-100 mb-8">Smart Agriculture Ecosystem</p>
         </motion.div>
 
         {/* Progress Bar */}
@@ -102,7 +110,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="text-green-100 mt-8 text-sm"
+          className="text-indigo-100 mt-8 text-sm"
         >
           Empowering Farmers with Technology
         </motion.p>
