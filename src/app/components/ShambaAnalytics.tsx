@@ -105,14 +105,14 @@ export function ShambaAnalytics() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
       {/* Header Banner */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-violet-950 via-indigo-800 to-indigo-950 text-white rounded-3xl p-6 sm:p-8 mb-8 shadow-2xl border border-violet-500/20">
+      <div className="relative overflow-hidden bg-gradient-to-r from-green-950 via-green-800 to-green-950 text-white rounded-3xl p-6 sm:p-8 mb-8 shadow-2xl border border-green-500/20">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <Badge className="bg-violet-500/20 text-violet-300 border-violet-500/30 mb-2 backdrop-blur-md px-3 py-1">
+            <Badge className="bg-green-500/20 text-green-300 border-green-500/30 mb-2 backdrop-blur-md px-3 py-1">
               📊 Farm Intelligence Console
             </Badge>
             <h1 className="text-3xl sm:text-4xl font-black tracking-tight">Shamba Analytics Dashboard</h1>
-            <p className="text-violet-100 text-sm mt-1 max-w-xl">
+            <p className="text-green-100 text-sm mt-1 max-w-xl">
               MACRO whole-farm economics &amp; MICRO per-plot crop intelligence for informed decisions.
             </p>
           </div>
@@ -121,7 +121,7 @@ export function ShambaAnalytics() {
             <button
               onClick={() => setView("macro")}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                view === "macro" ? "bg-white text-indigo-900 shadow-xs" : "text-violet-200"
+                view === "macro" ? "bg-white text-green-900 shadow-xs" : "text-green-200"
               }`}
             >
               <Map className="w-4 h-4" /> MACRO
@@ -129,7 +129,7 @@ export function ShambaAnalytics() {
             <button
               onClick={() => setView("micro")}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                view === "micro" ? "bg-white text-indigo-900 shadow-xs" : "text-violet-200"
+                view === "micro" ? "bg-white text-green-900 shadow-xs" : "text-green-200"
               }`}
             >
               <Crosshair className="w-4 h-4" /> MICRO
@@ -142,7 +142,7 @@ export function ShambaAnalytics() {
         <>
           {/* Macro KPI Row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-            <Card className="p-5 border-l-4 border-l-indigo-500 bg-white flex items-center justify-between shadow-sm">
+            <Card className="p-5 border-l-4 border-l-green-500 bg-white flex items-center justify-between shadow-sm">
               <div>
                 <span className="text-xs font-bold text-slate-500 uppercase">Projected Farm Value</span>
                 <h3 className="text-2xl font-black text-slate-900 mt-1 font-mono">TSh 52M</h3>
@@ -150,7 +150,7 @@ export function ShambaAnalytics() {
                   <ArrowUpRight className="w-3.5 h-3.5" /> +12% vs last season
                 </p>
               </div>
-              <div className="p-3 bg-indigo-50 text-indigo-600 rounded-2xl">
+              <div className="p-3 bg-green-50 text-green-600 rounded-2xl">
                 <Coins className="w-6 h-6" />
               </div>
             </Card>
@@ -193,15 +193,15 @@ export function ShambaAnalytics() {
           <div className="grid lg:grid-cols-2 gap-8 mb-8">
             <Card className="p-6">
               <div className="flex items-center gap-2 mb-5">
-                <TrendingUp className="w-5 h-5 text-indigo-600" />
+                <TrendingUp className="w-5 h-5 text-green-600" />
                 <h2 className="text-lg font-bold text-slate-900">Produce Output &amp; Revenue Trajectory</h2>
               </div>
               <ResponsiveContainer width="100%" height={260}>
                 <AreaChart data={revenueTrend}>
                   <defs>
                     <linearGradient id="rev" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#6366f1" stopOpacity={0.35} />
-                      <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#16a34a" stopOpacity={0.35} />
+                      <stop offset="95%" stopColor="#16a34a" stopOpacity={0} />
                     </linearGradient>
                     <linearGradient id="prod" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="#10b981" stopOpacity={0.35} />
@@ -212,7 +212,7 @@ export function ShambaAnalytics() {
                   <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
                   <YAxis stroke="#94a3b8" fontSize={12} />
                   <Tooltip />
-                  <Area type="monotone" dataKey="revenue" name="Revenue (TSh M)" stroke="#6366f1" strokeWidth={3} fill="url(#rev)" />
+                  <Area type="monotone" dataKey="revenue" name="Revenue (TSh M)" stroke="#16a34a" strokeWidth={3} fill="url(#rev)" />
                   <Area type="monotone" dataKey="produce" name="Produce (Tons)" stroke="#10b981" strokeWidth={3} fill="url(#prod)" />
                 </AreaChart>
               </ResponsiveContainer>
@@ -220,7 +220,7 @@ export function ShambaAnalytics() {
 
             <Card className="p-6">
               <div className="flex items-center gap-2 mb-5">
-                <BarChart3 className="w-5 h-5 text-violet-600" />
+                <BarChart3 className="w-5 h-5 text-green-600" />
                 <h2 className="text-lg font-bold text-slate-900">Yield by Crop (Bags/Acre)</h2>
               </div>
               <ResponsiveContainer width="100%" height={260}>
@@ -229,7 +229,7 @@ export function ShambaAnalytics() {
                   <XAxis dataKey="crop" stroke="#94a3b8" fontSize={12} />
                   <YAxis stroke="#94a3b8" fontSize={12} />
                   <Tooltip />
-                  <Bar dataKey="yield" name="Yield (bags/ac)" fill="#7c3aed" radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="yield" name="Yield (bags/ac)" fill="#16a34a" radius={[8, 8, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </Card>
@@ -268,15 +268,15 @@ export function ShambaAnalytics() {
               </div>
             </Card>
 
-            <Card className="p-6 bg-gradient-to-b from-violet-50 to-white border-violet-200/70">
+            <Card className="p-6 bg-gradient-to-b from-green-50 to-white border-green-200/70">
               <div className="flex items-center gap-2 mb-4">
-                <CalendarClock className="w-5 h-5 text-violet-700" />
+                <CalendarClock className="w-5 h-5 text-green-700" />
                 <h2 className="text-lg font-bold text-slate-900">Season Insights</h2>
               </div>
               <div className="space-y-3">
                 {insights.map((tip, i) => (
-                  <div key={i} className="p-3 bg-white rounded-2xl border border-violet-100 text-xs text-slate-700 leading-relaxed shadow-sm">
-                    <span className="text-violet-600 font-bold mr-1">•</span> {tip}
+                  <div key={i} className="p-3 bg-white rounded-2xl border border-green-100 text-xs text-slate-700 leading-relaxed shadow-sm">
+                    <span className="text-green-600 font-bold mr-1">•</span> {tip}
                   </div>
                 ))}
               </div>
@@ -292,13 +292,13 @@ export function ShambaAnalytics() {
                 key={plot.id}
                 className={`p-5 rounded-3xl cursor-pointer transition-all ${
                   selectedPlot.id === plot.id
-                    ? "border-2 border-indigo-600 shadow-lg"
-                    : "border-slate-200/80 hover:border-indigo-300"
+                    ? "border-2 border-green-600 shadow-lg"
+                    : "border-slate-200/80 hover:border-green-300"
                 }`}
                 onClick={() => setSelectedPlot(plot)}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <Badge className="bg-indigo-100 text-indigo-800 border-none">{plot.crop}</Badge>
+                  <Badge className="bg-green-100 text-green-800 border-none">{plot.crop}</Badge>
                   <Leaf className="w-4 h-4 text-green-600" />
                 </div>
                 <h3 className="text-sm font-extrabold text-slate-900 leading-tight">{plot.name}</h3>
@@ -327,10 +327,10 @@ export function ShambaAnalytics() {
             transition={{ duration: 0.4 }}
             className="grid lg:grid-cols-3 gap-6"
           >
-            <Card className="lg:col-span-2 p-6 border-t-4 border-t-indigo-600 rounded-3xl">
+            <Card className="lg:col-span-2 p-6 border-t-4 border-t-green-600 rounded-3xl">
               <div className="flex items-start justify-between mb-6 flex-wrap gap-3">
                 <div>
-                  <Badge className="bg-violet-100 text-violet-800 border-none mb-2">MICRO · Plot Detail</Badge>
+                  <Badge className="bg-green-100 text-green-800 border-none mb-2">MICRO · Plot Detail</Badge>
                   <h2 className="text-2xl font-extrabold text-slate-900">{selectedPlot.name}</h2>
                   <p className="text-xs text-slate-500 font-medium mt-1">
                     {selectedPlot.crop} · {selectedPlot.location} · {selectedPlot.area}
@@ -338,7 +338,7 @@ export function ShambaAnalytics() {
                 </div>
                 <div className="text-right">
                   <p className="text-[10px] font-bold uppercase text-slate-500">Crop Phase</p>
-                  <p className="text-sm font-bold text-indigo-700">{selectedPlot.phase} · {selectedPlot.phaseProgress}%</p>
+                  <p className="text-sm font-bold text-green-700">{selectedPlot.phase} · {selectedPlot.phaseProgress}%</p>
                 </div>
               </div>
 
@@ -346,12 +346,12 @@ export function ShambaAnalytics() {
               <div className="grid sm:grid-cols-2 gap-4 mb-6">
                 <SensorBar label="Soil Moisture" value={selectedPlot.sensors.moisture} unit="%" icon={Droplets} color="text-cyan-600 bg-cyan-600" />
                 <SensorBar label="Soil Temp" value={selectedPlot.sensors.temp} unit="°C" icon={Thermometer} color="text-rose-500 bg-rose-500" />
-                <SensorBar label="Air Humidity" value={selectedPlot.sensors.humidity} unit="%" icon={Cloud} color="text-violet-600 bg-violet-600" />
+                <SensorBar label="Air Humidity" value={selectedPlot.sensors.humidity} unit="%" icon={Cloud} color="text-green-600 bg-green-600" />
                 <SensorBar label="Light Intensity" value={selectedPlot.sensors.light} unit="lux" icon={Sun} color="text-amber-500 bg-amber-500" />
               </div>
 
               <h3 className="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-indigo-600" /> Plot Moisture Trend
+                <TrendingUp className="w-4 h-4 text-green-600" /> Plot Moisture Trend
               </h3>
               <ResponsiveContainer width="100%" height={200}>
                 <LineChart data={[
@@ -386,7 +386,7 @@ export function ShambaAnalytics() {
 
                 <div className="space-y-2.5">
                   {[
-                    { icon: Target, label: `Fertilizer: ${selectedPlot.health >= 85 ? "On track" : "Top-dress due"}`, color: "text-indigo-600 bg-indigo-50" },
+                    { icon: Target, label: `Fertilizer: ${selectedPlot.health >= 85 ? "On track" : "Top-dress due"}`, color: "text-green-600 bg-green-50" },
                     { icon: Droplets, label: `Next irrigation: ${selectedPlot.sensors.moisture < 55 ? "ASAP" : "schedule"}$`, color: "text-cyan-600 bg-cyan-50" },
                     { icon: Sprout, label: "Intercrop: companion plants", color: "text-green-600 bg-green-50" },
                   ].map((item, i) => {

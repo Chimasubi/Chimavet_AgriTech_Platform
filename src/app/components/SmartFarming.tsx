@@ -250,27 +250,27 @@ export function SmartFarming() {
       case "moisture-1":
         return "cyan";
       case "humidity-1":
-        return "violet";
+        return "green";
       case "light-1":
         return "amber";
       case "wind-1":
         return "sky";
       default:
-        return "indigo";
+        return "green";
     }
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
       {/* Header Banner */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-indigo-950 via-indigo-800 to-violet-900 text-white rounded-3xl p-6 sm:p-8 mb-8 shadow-2xl border border-indigo-500/20">
+      <div className="relative overflow-hidden bg-gradient-to-r from-green-950 via-green-800 to-green-900 text-white rounded-3xl p-6 sm:p-8 mb-8 shadow-2xl border border-green-500/20">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <Badge className="bg-indigo-500/20 text-indigo-300 border-indigo-500/30 mb-2 backdrop-blur-md px-3 py-1">
+            <Badge className="bg-green-500/20 text-green-300 border-green-500/30 mb-2 backdrop-blur-md px-3 py-1">
               🌱 IoT Precision Agronomy
             </Badge>
             <h1 className="text-3xl sm:text-4xl font-black tracking-tight">Smart Farming Dashboard</h1>
-            <p className="text-indigo-100 text-sm mt-1 max-w-xl">
+            <p className="text-green-100 text-sm mt-1 max-w-xl">
               Real-time field sensors, crop health telemetry, and automatic actuation per farm zone.
             </p>
           </div>
@@ -287,12 +287,12 @@ export function SmartFarming() {
         </div>
 
         {/* Macro / Micro Toggle */}
-        <div className="mt-6 pt-4 border-t border-indigo-500/20 flex flex-col sm:flex-row sm:items-center gap-3">
+        <div className="mt-6 pt-4 border-t border-green-500/20 flex flex-col sm:flex-row sm:items-center gap-3">
           <div className="flex bg-black/20 p-1 rounded-xl w-fit">
             <button
               onClick={() => setView("macro")}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                view === "macro" ? "bg-white text-indigo-900 shadow-xs" : "text-indigo-200"
+                view === "macro" ? "bg-white text-green-900 shadow-xs" : "text-green-200"
               }`}
             >
               <Map className="w-4 h-4" /> MACRO · Farm Overview
@@ -300,13 +300,13 @@ export function SmartFarming() {
             <button
               onClick={() => setView("micro")}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                view === "micro" ? "bg-white text-indigo-900 shadow-xs" : "text-indigo-200"
+                view === "micro" ? "bg-white text-green-900 shadow-xs" : "text-green-200"
               }`}
             >
               <Crosshair className="w-4 h-4" /> MICRO · Zone Detail
             </button>
           </div>
-          <span className="text-xs text-indigo-200 font-medium">
+          <span className="text-xs text-green-200 font-medium">
             {view === "macro"
               ? "Whole-farm sensor health, trends & alerts."
               : `Drilling into ${selectedZone.name} — ${selectedZone.cropType}, ${selectedZone.areaSize}.`}
@@ -368,7 +368,7 @@ export function SmartFarming() {
           <div className="grid lg:grid-cols-3 gap-8 mb-8">
             <Card className="lg:col-span-2 p-6">
               <div className="flex items-center gap-2 mb-4">
-                <TrendingUp className="w-5 h-5 text-indigo-600" />
+                <TrendingUp className="w-5 h-5 text-green-600" />
                 <h2 className="text-xl text-gray-900 font-bold">Sensor Trends</h2>
               </div>
               <ResponsiveContainer width="100%" height={300}>
@@ -405,7 +405,7 @@ export function SmartFarming() {
                           ? "bg-red-50 border-red-200"
                           : notif.type === "warning"
                           ? "bg-yellow-50 border-yellow-200"
-                          : "bg-indigo-50 border-indigo-200"
+                          : "bg-green-50 border-green-200"
                       }`}
                     >
                       <div className="flex gap-2">
@@ -414,7 +414,7 @@ export function SmartFarming() {
                         ) : notif.type === "warning" ? (
                           <Bell className="w-4 h-4 text-yellow-600 flex-shrink-0 mt-0.5" />
                         ) : (
-                          <Activity className="w-4 h-4 text-indigo-600 flex-shrink-0 mt-0.5" />
+                          <Activity className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
                         )}
                         <div className="flex-1">
                           <p className="text-sm text-gray-900">{notif.message}</p>
@@ -444,9 +444,9 @@ export function SmartFarming() {
               </div>
             </Card>
 
-            <Card className="p-4 bg-indigo-50 border-indigo-200">
+            <Card className="p-4 bg-green-50 border-green-200">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -493,8 +493,8 @@ export function SmartFarming() {
                 onClick={() => setSelectedZone(zone)}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold whitespace-nowrap transition-all border ${
                   selectedZone.id === zone.id
-                    ? "bg-indigo-600 text-white border-indigo-600 shadow-md"
-                    : "bg-white text-slate-700 border-slate-200 hover:border-indigo-300"
+                    ? "bg-green-600 text-white border-green-600 shadow-md"
+                    : "bg-white text-slate-700 border-slate-200 hover:border-green-300"
                 }`}
               >
                 <Crosshair className="w-4 h-4" />
@@ -505,10 +505,10 @@ export function SmartFarming() {
 
           {/* Zone Detail */}
           <div className="grid lg:grid-cols-3 gap-6 mb-6">
-            <Card className="lg:col-span-2 p-6 border-t-4 border-t-indigo-600 rounded-3xl">
+            <Card className="lg:col-span-2 p-6 border-t-4 border-t-green-600 rounded-3xl">
               <div className="flex items-start justify-between mb-5 flex-wrap gap-3">
                 <div>
-                  <Badge className="bg-indigo-100 text-indigo-800 border-none mb-2">{selectedZone.cropType}</Badge>
+                  <Badge className="bg-green-100 text-green-800 border-none mb-2">{selectedZone.cropType}</Badge>
                   <h2 className="text-2xl font-extrabold text-slate-900">{selectedZone.name}</h2>
                   <p className="text-xs text-slate-500 font-medium mt-1">
                     {selectedZone.cropType} · {selectedZone.areaSize} · {selectedZone.schedule}
@@ -558,7 +558,7 @@ export function SmartFarming() {
               {/* Zone trend chart */}
               <div className="mt-6">
                 <h3 className="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-indigo-600" /> Zone Telemetry (24h)
+                  <TrendingUp className="w-4 h-4 text-green-600" /> Zone Telemetry (24h)
                 </h3>
                 <ResponsiveContainer width="100%" height={220}>
                   <LineChart data={historicalData}>
@@ -574,7 +574,7 @@ export function SmartFarming() {
             </Card>
 
             {/* Zone actuation control */}
-            <Card className="p-6 flex flex-col justify-between border-t-4 border-t-indigo-600 rounded-3xl">
+            <Card className="p-6 flex flex-col justify-between border-t-4 border-t-green-600 rounded-3xl">
               <div>
                 <h3 className="text-xl font-extrabold text-slate-900 mb-1">Actuation Control</h3>
                 <p className="text-xs text-slate-500 mb-5">Manual valve & smart auto-trigger settings for this zone.</p>
@@ -601,16 +601,16 @@ export function SmartFarming() {
                   <div className="bg-slate-50/60 p-3 rounded-xl">
                     <div className="flex justify-between text-xs font-bold text-slate-600 mb-1">
                       <span>Water Output Rate</span>
-                      <span className="text-indigo-700 font-mono">{selectedZone.flowRate} L/min</span>
+                      <span className="text-green-700 font-mono">{selectedZone.flowRate} L/min</span>
                     </div>
                     <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                      <div className="h-full bg-indigo-600 rounded-full" style={{ width: `${selectedZone.flowRate}%` }} />
+                      <div className="h-full bg-green-600 rounded-full" style={{ width: `${selectedZone.flowRate}%` }} />
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-5 p-3 bg-indigo-50 rounded-2xl border border-indigo-100 text-xs text-indigo-900">
+              <div className="mt-5 p-3 bg-green-50 rounded-2xl border border-green-100 text-xs text-green-900">
                 <span className="font-bold">💡 Advisory:</span>{" "}
                 {selectedZone.soilMoisture < 50
                   ? `Moisture below 50% — irrigate ${selectedZone.name} now to protect ${selectedZone.cropType}.`

@@ -80,7 +80,7 @@ export function Home() {
       icon: Activity,
       link: "/smart-farming",
       tag: "Precision Agronomy",
-      color: "bg-indigo-600",
+      color: "bg-green-600",
       image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800",
     },
     {
@@ -89,7 +89,7 @@ export function Home() {
       icon: BarChart3,
       link: "/shamba-analytics",
       tag: "MACRO + MICRO",
-      color: "bg-violet-600",
+      color: "bg-green-600",
       image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800",
     },
   ];
@@ -98,8 +98,8 @@ export function Home() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Indigo Hero Section with Auto-Rotating Carousel */}
-      <section className="relative bg-gradient-to-r from-indigo-950 via-indigo-800 to-violet-900 text-white overflow-hidden py-24 sm:py-32">
+      {/* Green Hero Section with Auto-Rotating Carousel */}
+      <section className="relative bg-gradient-to-r from-green-950 via-green-800 to-green-900 text-white overflow-hidden py-24 sm:py-32">
         <div className="absolute inset-0 overflow-hidden opacity-20">
           <motion.img
             key={hero.image}
@@ -114,7 +114,7 @@ export function Home() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge className="bg-white/20 text-white border-none mb-4 px-4 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md inline-flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-indigo-200" />
+            <Sparkles className="w-4 h-4 text-green-200" />
             <span>Tanzania Agriculture Ecosystem</span>
           </Badge>
 
@@ -127,10 +127,10 @@ export function Home() {
             <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-5 leading-tight">
               {hero.title}
             </h1>
-            <p className="text-xl sm:text-2xl font-medium text-indigo-100 max-w-3xl mx-auto mb-6 leading-relaxed">
+            <p className="text-xl sm:text-2xl font-medium text-green-100 max-w-3xl mx-auto mb-6 leading-relaxed">
               {hero.subtitle}
             </p>
-            <p className="text-base sm:text-lg text-indigo-50 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-green-50 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
               {hero.description}
             </p>
           </motion.div>
@@ -152,26 +152,26 @@ export function Home() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/shop"
-              className="bg-white text-indigo-800 hover:bg-indigo-50 font-extrabold px-8 py-4 rounded-2xl transition-all shadow-xl text-base flex items-center gap-2 group"
+              className="bg-white text-green-800 hover:bg-green-50 font-extrabold px-8 py-4 rounded-2xl transition-all shadow-xl text-base flex items-center gap-2 group"
             >
-              <ShoppingBag className="w-5 h-5 text-indigo-700" />
+              <ShoppingBag className="w-5 h-5 text-green-700" />
               <span>Explore Agrovet Store</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
 
             <Link
               to="/marketplace"
-              className="bg-indigo-950/40 hover:bg-indigo-950/60 text-white font-bold px-7 py-4 rounded-2xl backdrop-blur-md transition-all border border-white/30 text-base flex items-center gap-2"
+              className="bg-green-950/40 hover:bg-green-950/60 text-white font-bold px-7 py-4 rounded-2xl backdrop-blur-md transition-all border border-white/30 text-base flex items-center gap-2"
             >
-              <Store className="w-5 h-5 text-indigo-300" />
+              <Store className="w-5 h-5 text-green-300" />
               <span>Crop Produce Market</span>
             </Link>
 
             <Link
               to="/shamba-analytics"
-              className="bg-indigo-950/40 hover:bg-indigo-950/60 text-white font-bold px-7 py-4 rounded-2xl backdrop-blur-md transition-all border border-white/30 text-base flex items-center gap-2"
+              className="bg-green-950/40 hover:bg-green-950/60 text-white font-bold px-7 py-4 rounded-2xl backdrop-blur-md transition-all border border-white/30 text-base flex items-center gap-2"
             >
-              <BarChart3 className="w-5 h-5 text-violet-300" />
+              <BarChart3 className="w-5 h-5 text-green-300" />
               <span>Shamba Analytics</span>
             </Link>
           </div>
@@ -181,8 +181,8 @@ export function Home() {
       {/* Stats Counter Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          <Card className="p-6 text-center border-indigo-200/60 shadow-lg bg-white rounded-2xl">
-            <div className="w-12 h-12 bg-indigo-100 text-indigo-700 rounded-2xl flex items-center justify-center mx-auto mb-3 font-bold">
+          <Card className="p-6 text-center border-green-200/60 shadow-lg bg-white rounded-2xl">
+            <div className="w-12 h-12 bg-green-100 text-green-700 rounded-2xl flex items-center justify-center mx-auto mb-3 font-bold">
               <TrendingUp className="w-6 h-6" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">TSh 340M+</h3>
@@ -197,8 +197,8 @@ export function Home() {
             <p className="text-xs text-slate-500 mt-1 font-semibold">Tractors & Harvesters Hired</p>
           </Card>
 
-          <Card className="p-6 text-center border-violet-200/60 shadow-lg bg-white rounded-2xl">
-            <div className="w-12 h-12 bg-violet-100 text-violet-700 rounded-2xl flex items-center justify-center mx-auto mb-3 font-bold">
+          <Card className="p-6 text-center border-green-200/60 shadow-lg bg-white rounded-2xl">
+            <div className="w-12 h-12 bg-green-100 text-green-700 rounded-2xl flex items-center justify-center mx-auto mb-3 font-bold">
               <LineChart className="w-6 h-6" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">1,500+</h3>
@@ -218,7 +218,7 @@ export function Home() {
       {/* Services Grid Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <Badge className="bg-indigo-100 text-indigo-800 border-none mb-3 px-3.5 py-1 rounded-full">
+          <Badge className="bg-green-100 text-green-800 border-none mb-3 px-3.5 py-1 rounded-full">
             Our Ecosystem Services
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
@@ -261,7 +261,7 @@ export function Home() {
 
                   <Link
                     to={service.link}
-                    className="inline-flex items-center gap-2 text-indigo-700 font-bold text-sm hover:text-indigo-800 pt-3 border-t border-slate-100 group-hover:translate-x-1 transition-transform"
+                    className="inline-flex items-center gap-2 text-green-700 font-bold text-sm hover:text-green-800 pt-3 border-t border-slate-100 group-hover:translate-x-1 transition-transform"
                   >
                     <span>Open Module</span>
                     <ChevronRight className="w-4 h-4" />

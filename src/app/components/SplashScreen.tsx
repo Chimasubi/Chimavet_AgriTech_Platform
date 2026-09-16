@@ -28,7 +28,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-gradient-to-br from-indigo-700 via-indigo-800 to-indigo-950 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-gradient-to-br from-green-700 via-green-800 to-green-950 flex items-center justify-center z-50"
     >
       <div className="text-center">
         {/* Animated Logo */}
@@ -48,7 +48,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
             
             {/* Center icon */}
             <div className="absolute inset-0 bg-white rounded-full flex items-center justify-center shadow-2xl">
-              <Sprout className="w-16 h-16 text-indigo-600" />
+              <Sprout className="w-16 h-16 text-green-600" />
             </div>
 
             {/* Floating elements */}
@@ -85,7 +85,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
           transition={{ delay: 0.5, duration: 0.8 }}
         >
           <h1 className="text-5xl text-white mb-2">Chimavet</h1>
-          <p className="text-xl text-indigo-100 mb-8">Smart Agriculture Ecosystem</p>
+          <p className="text-xl text-green-100 mb-8">Smart Agriculture Ecosystem</p>
         </motion.div>
 
         {/* Progress Bar */}
@@ -110,7 +110,7 @@ export function SplashScreen({ onFinish }: SplashScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="text-indigo-100 mt-8 text-sm"
+          className="text-green-100 mt-8 text-sm"
         >
           Empowering Farmers with Technology
         </motion.p>
