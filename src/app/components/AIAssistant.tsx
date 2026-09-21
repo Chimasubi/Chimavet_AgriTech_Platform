@@ -92,7 +92,7 @@ export function AIAssistant() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-green-600 via-green-600 to-green-700 text-white p-4 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3 border-2 border-green-300/40 glow-emerald group"
+          className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] right-[calc(1.5rem+env(safe-area-inset-right))] z-50 bg-gradient-to-r from-green-600 via-green-600 to-green-700 text-white p-4 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3 border-2 border-green-300/40 glow-emerald group"
         >
           <div className="relative">
             <Sparkles className="w-6 h-6 animate-pulse" />
@@ -107,7 +107,7 @@ export function AIAssistant() {
 
       {/* Floating Chat Modal */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden h-[580px] animate-in fade-in slide-in-from-bottom-5">
+        <div className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-[calc(1.5rem+env(safe-area-inset-right))] z-50 w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden h-[min(620px,calc(100dvh-5rem))] min-h-[320px]">
           {/* Header */}
           <div className="bg-gradient-to-r from-slate-950 via-green-950 to-slate-900 text-white p-4 flex items-center justify-between border-b border-slate-800">
             <div className="flex items-center gap-3">
@@ -130,7 +130,7 @@ export function AIAssistant() {
           </div>
 
           {/* Chat History */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/70 custom-scrollbar">
+          <div className="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/70 custom-scrollbar overscroll-contain">
             {messages.map((msg) => (
               <div
                 key={msg.id}

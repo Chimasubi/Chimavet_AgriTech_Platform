@@ -156,7 +156,7 @@ export function ShambaAnalytics() {
   const [selectedPlot, setSelectedPlot] = useState(plots[0]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-dvh">
       {/* Header Banner */}
       <div className="relative overflow-hidden bg-gradient-to-r from-green-950 via-green-800 to-green-950 text-white rounded-3xl p-6 sm:p-8 mb-8 shadow-2xl border border-green-500/20">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -324,7 +324,7 @@ export function ShambaAnalytics() {
                       <Activity className="w-3.5 h-3.5 animate-pulse" /> Live
                     </span>
                   </div>
-                  <div className="overflow-x-auto custom-scrollbar">
+                  <div className="overflow-x-auto custom-scrollbar overscroll-contain">
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="text-left text-[11px] uppercase text-slate-500 border-b border-slate-200">
@@ -357,7 +357,7 @@ export function ShambaAnalytics() {
                                     : "bg-red-50 text-red-600"
                                 )}
                               >
-                                <ArrowUpRight className={cn("w-3 h-3", row.change.startsWith("+") && "rotate-0")} />
+                                <ArrowUpRight className={cn("w-3 h-3 transition-transform", row.change.startsWith("-") && "rotate-90")} />
                                 {row.change}
                               </span>
                             </td>

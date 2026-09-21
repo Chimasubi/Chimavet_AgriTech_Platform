@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
 import { ShoppingBag, Droplets, Sprout, Activity, BarChart3, Tractor, Store, Home as HomeIcon } from "lucide-react";
 
 export function Navigation() {
   const location = useLocation();
+
+  useEffect(() => {
+    const active = document.querySelector('[data-nav-active="true"]');
+    active?.scrollIntoView({ block: "nearest", inline: "center" });
+  }, [location.pathname]);
 
   const navItems = [
     { path: "/", label: "Home", icon: HomeIcon },
@@ -18,7 +23,7 @@ export function Navigation() {
   return (
     <nav className="glass-nav sticky top-0 z-40 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center justify-between h-16 sm:h-20 [@media(orientation:landscape)_and_(max-height:480px)]:h-14">
           {/* Brand Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
             <div className="bg-gradient-to-tr from-green-800 via-green-600 to-green-500 text-white p-2.5 rounded-2xl group-hover:scale-105 transition-all shadow-md shadow-green-600/20">
@@ -28,14 +33,14 @@ export function Navigation() {
               <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 font-sans block leading-none">
                 Chima<span className="text-green-600">vet</span>
               </span>
-              <span className="text-[10px] font-semibold text-slate-400 block mt-0.5">
+              <span className="text-[10px] font-semibold text-slate-400 block mt-0.5 [@media(orientation:landscape)_and_(max-height:480px)]:hidden">
                 Agriculture Ecosystem (TSh)
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden xl:flex items-center gap-1 bg-slate-100/70 p-1.5 rounded-2xl border border-slate-200/60">
+          <div className="hidden lg:flex items-center gap-1 bg-slate-100/70 p-1.5 rounded-2xl border border-slate-200/60">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -69,7 +74,7 @@ export function Navigation() {
         </div>
 
         {/* Mobile / Tablet Horizontal Navigation */}
-        <div className="xl:hidden flex items-center gap-1.5 overflow-x-auto py-2.5 border-t border-slate-100 custom-scrollbar">
+        <div className="lg:hidden flex items-center gap-1.5 overflow-x-auto py-2.5 border-t border-slate-100 custom-scrollbar [@media(orientation:landscape)_and_(max-height:480px)]:py-1.5 [@media(orientation:landscape)_and_(max-height:480px)]:gap-1">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
@@ -77,11 +82,12 @@ export function Navigation() {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all [@media(orientation:landscape)_and_(max-height:480px)]:px-2.5 [@media(orientation:landscape)_and_(max-height:480px)]:py-1 [@media(orientation:landscape)_and_(max-height:480px)]:text-[11px] ${
                   isActive
                     ? "bg-green-600 text-white font-bold shadow-xs"
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                 }`}
+                data-nav-active={isActive || undefined}
               >
                 <Icon className="w-3.5 h-3.5" />
                 <span>{item.label}</span>

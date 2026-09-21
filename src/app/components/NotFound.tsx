@@ -1,15 +1,18 @@
 ﻿import { Link } from "react-router";
-import { Home } from "lucide-react";
+import { Home, Sprout } from "lucide-react";
 import { Button } from "./ui/button";
 
 export function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="min-h-dvh flex items-center justify-center bg-slate-50 px-4">
       <div className="text-center">
-        <h1 className="text-6xl text-gray-900 mb-4">404</h1>
-        <h2 className="text-2xl text-gray-700 mb-4">Page Not Found</h2>
-        <p className="text-gray-600 mb-8">
-          The page you're looking for doesn't exist.
+        <span className="w-20 h-20 mx-auto rounded-3xl bg-green-100 text-green-700 flex items-center justify-center mb-6">
+          <Sprout className="w-10 h-10" />
+        </span>
+        <h1 className="text-6xl text-green-700 mb-2 font-black">404</h1>
+        <h2 className="text-2xl text-slate-800 mb-3 font-bold">Page Not Found</h2>
+        <p className="text-slate-500 mb-8">
+          The page you're looking for doesn't exist or has moved.
         </p>
         <Link to="/">
           <Button className="bg-green-600">

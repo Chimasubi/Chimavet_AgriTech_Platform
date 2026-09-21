@@ -97,9 +97,9 @@ export function Home() {
   const hero = heroSlides[slideIndex];
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-dvh bg-slate-50">
       {/* Green Hero Section with Auto-Rotating Carousel */}
-      <section className="relative bg-gradient-to-r from-green-950 via-green-800 to-green-900 text-white overflow-hidden py-24 sm:py-32">
+      <section className="relative bg-gradient-to-r from-green-950 via-green-800 to-green-900 text-white overflow-hidden py-24 sm:py-32 [@media(orientation:landscape)_and_(max-height:480px)]:py-12">
         <div className="absolute inset-0 overflow-hidden opacity-20">
           <motion.img
             key={hero.image}
@@ -124,19 +124,19 @@ export function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-5 leading-tight">
+            <h1 className="text-4xl sm:text-6xl font-black tracking-tight mb-5 leading-tight [@media(orientation:landscape)_and_(max-height:480px)]:text-2xl">
               {hero.title}
             </h1>
-            <p className="text-xl sm:text-2xl font-medium text-green-100 max-w-3xl mx-auto mb-6 leading-relaxed">
+            <p className="text-xl sm:text-2xl font-medium text-green-100 max-w-3xl mx-auto mb-6 leading-relaxed [@media(orientation:landscape)_and_(max-height:480px)]:text-sm [@media(orientation:landscape)_and_(max-height:480px)]:mb-3">
               {hero.subtitle}
             </p>
-            <p className="text-base sm:text-lg text-green-50 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-green-50 max-w-2xl mx-auto mb-10 leading-relaxed font-normal [@media(orientation:landscape)_and_(max-height:480px)]:text-xs [@media(orientation:landscape)_and_(max-height:480px)]:mb-5">
               {hero.description}
             </p>
           </motion.div>
 
           {/* Carousel dots */}
-          <div className="flex items-center justify-center gap-2 mb-8">
+          <div className="flex items-center justify-center gap-2 mb-8 [@media(orientation:landscape)_and_(max-height:480px)]:mb-4">
             {heroSlides.map((_, i) => (
               <button
                 key={i}
@@ -149,10 +149,10 @@ export function Home() {
             ))}
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 [@media(orientation:landscape)_and_(max-height:480px)]:gap-2">
             <Link
               to="/shop"
-              className="bg-white text-green-800 hover:bg-green-50 font-extrabold px-8 py-4 rounded-2xl transition-all shadow-xl text-base flex items-center gap-2 group"
+              className="bg-white text-green-800 hover:bg-green-50 font-extrabold px-8 py-4 rounded-2xl transition-all shadow-xl text-base flex items-center gap-2 group [@media(orientation:landscape)_and_(max-height:480px)]:px-5 [@media(orientation:landscape)_and_(max-height:480px)]:py-2.5 [@media(orientation:landscape)_and_(max-height:480px)]:text-sm"
             >
               <ShoppingBag className="w-5 h-5 text-green-700" />
               <span>Explore Agrovet Store</span>
@@ -189,8 +189,8 @@ export function Home() {
             <p className="text-xs text-slate-500 mt-1 font-semibold">Inputs & Machinery Traded</p>
           </Card>
 
-          <Card className="p-6 text-center border-amber-200/60 shadow-lg bg-white rounded-2xl">
-            <div className="w-12 h-12 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center mx-auto mb-3 font-bold">
+          <Card className="p-6 text-center border-green-200/60 shadow-lg bg-white rounded-2xl">
+            <div className="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-2xl flex items-center justify-center mx-auto mb-3 font-bold">
               <Tractor className="w-6 h-6" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">480+</h3>
@@ -205,8 +205,8 @@ export function Home() {
             <p className="text-xs text-slate-500 mt-1 font-semibold">Shambas Analyzed</p>
           </Card>
 
-          <Card className="p-6 text-center border-cyan-200/60 shadow-lg bg-white rounded-2xl">
-            <div className="w-12 h-12 bg-cyan-100 text-cyan-700 rounded-2xl flex items-center justify-center mx-auto mb-3 font-bold">
+          <Card className="p-6 text-center border-green-200/60 shadow-lg bg-white rounded-2xl">
+            <div className="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-2xl flex items-center justify-center mx-auto mb-3 font-bold">
               <Wifi className="w-6 h-6" />
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">1,200+</h3>

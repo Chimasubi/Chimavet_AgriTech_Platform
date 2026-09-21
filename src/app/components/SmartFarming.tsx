@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import { Activity, Thermometer, Droplets, Wind, Sun, Cloud, Bell, TrendingUp, AlertCircle, Map, Crosshair, RefreshCw, Gauge, Clock3 } from "lucide-react";
 import { Card } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -122,6 +122,7 @@ export function SmartFarming() {
   const [selectedZone, setSelectedZone] = useState<Zone>(fallbackZones[0]);
   const [lastSync, setLastSync] = useState<Date>(new Date(Date.now() - 30000));
   const [syncing, setSyncing] = useState(false);
+  const flowDebounce = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [sensors, setSensors] = useState<SensorData[]>([
     {
@@ -303,16 +304,59 @@ export function SmartFarming() {
     setTimeout(() => setSyncing(false), 1200);
   };
 
-  const updateZone = (patch: Partial<Zone>) => {
-    setZones((prev) => prev.map((z) => (z.id === selectedZone.id ? { ...z, ...patch } : z)));
-    setSelectedZone((prev) => ({ ...prev, ...patch }));
+  useEffect(() => {
+    if (flowDebounce.current) clearTimeout(flowDebounce.current);
+  }, []);
+
+  const updateZone = async (patch: Partial<Zone>) => {
+    setZones((prev) => prev.map((z) => (z.id === selectedZone?.id ? { ...z, ...patch } : z)));
+    setSelectedZone((prev) => (prev ? { ...prev, ...patch } : prev));
+
+    const zoneId = selectedZone.id;
+    if (patch.isActive !== undefined || patch.isAutoMode !== undefined) {
+      try {
+        const res = await api.toggleZone(
+          zoneId,
+          patch.isActive,
+          patch.isAutoMode
+        );
+        if (!res.success) {
+          setZones((prev) =>
+            prev.map((z) =>
+              z.id === zoneId
+                ? {
+                    ...z,
+                    isActive: patch.isActive !== undefined ? !patch.isActive! : z.isActive,
+                    isAutoMode: patch.isAutoMode !== undefined ? !patch.isAutoMode! : z.isAutoMode,
+                  }
+                : z
+            )
+          );
+          toast.error(res.message || "Failed to save zone settings.");
+        }
+      } catch {
+        toast.error("Network error. Zone settings not saved.");
+      }
+    } else if (patch.flowRate !== undefined) {
+      if (flowDebounce.current) clearTimeout(flowDebounce.current);
+      flowDebounce.current = setTimeout(async () => {
+        try {
+          const res = await api.toggleZone(zoneId, undefined, undefined, patch.flowRate);
+          if (res.success) {
+            toast.success(`${res.zone.name} flow rate set to ${res.zone.flowRate} L/min`);
+          }
+        } catch {
+          toast.error("Network error. Flow rate not saved.");
+        }
+      }, 600);
+    }
   };
 
   const moistureTint = (v: number) =>
     v < 50 ? { ring: "#ef4444", text: "text-red-600", word: "DRY" } : v > 80 ? { ring: "#0d9488", text: "text-teal-700", word: "SATURATED" } : { ring: "#16a34a", text: "text-green-600", word: "OPTIMAL" };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-dvh">
       {/* Header Banner */}
       <div className="relative overflow-hidden bg-gradient-to-r from-green-950 via-green-800 to-green-900 text-white rounded-3xl p-6 sm:p-8 mb-8 shadow-2xl border border-green-500/20">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -467,7 +511,7 @@ export function SmartFarming() {
                   <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
                     <div className="flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-green-600" />
-                      <h2 className="text-xl text-gray-900 font-bold">Sensor Trends</h2>
+                      <h2 className="text-xl text-slate-900 font-bold">Sensor Trends</h2>
                     </div>
                     <ChartLegend
                       items={[
@@ -494,7 +538,7 @@ export function SmartFarming() {
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
                       <Bell className="w-5 h-5 text-green-600" />
-                      <h2 className="text-xl text-gray-900 font-bold">Notifications</h2>
+                      <h2 className="text-xl text-slate-900 font-bold">Notifications</h2>
                     </div>
                     <div className="flex items-center gap-2">
                       {notifications.length > 0 && (
@@ -541,7 +585,7 @@ export function SmartFarming() {
                                 <Activity className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
                               )}
                               <div className="flex-1">
-                                <p className="text-sm text-gray-900">{notif.message}</p>
+                                <p className="text-sm text-slate-900">{notif.message}</p>
                                 <p className="text-xs text-slate-500 font-medium mt-1">{timeAgo(notif.timestamp)}</p>
                               </div>
                             </div>
@@ -556,7 +600,7 @@ export function SmartFarming() {
           ) : (
             <motion.div variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }} initial="hidden" animate="show">
               {/* Zone Selector */}
-              <div className="flex gap-2 overflow-x-auto custom-scrollbar mb-6 pb-1">
+              <div className="flex gap-2 overflow-x-auto custom-scrollbar mb-6 pb-1 overscroll-contain">
                 {zones.map((zone) => (
                   <button
                     key={zone.id}
